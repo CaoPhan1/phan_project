@@ -1,47 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductController;
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/product', function () {
-    $products = [
-        ['id' => 1, 'name' => 'iPhone 15'],
-        ['id' => 2, 'name' => 'Samsung S24'],
-        ['id' => 3, 'name' => 'Xiaomi 14'],
-    ];
-
-    return view('product.index', compact('products'));
+Route::prefix('product')->name('product.')->group(function () {
+    Route::controller(ProductController::class)->group(function() {
+        Route::get('/', 'index');
+        Route::get('/add', 'create')->name('add');
+        Route::get('/detail/{id}', 'get');
+        Route::post('/store', 'store')->name('store');
+    });
+    
 });
+// Route::prefix('product')->group(function () {
 
-Route::get('/product/add', function () {
-    return view('product.add');
-});
+//     Route::get('/', [ProductController::class, "index"]);
+//     Route::get('/add', [ProductController::class, 'create'])->name('add');
+//     Route::get('/detail/{id}', [ProductController::class, 'get']);
+// });
 
-Route::get('/product/{id?}', function ($id = '123') {
-    return "Product ID: " . $id;
-})->where('id', '[A-Za-z0-9]+');
+// Route::get('/login', function( ){
+//     return view('login.login');
+// });
 
-Route::prefix('product')->group(function () {
-
-    Route::get('/', function () {
-        $products = [
-            ['id' => 1, 'name' => 'iPhone 15'],
-            ['id' => 2, 'name' => 'Samsung S24'],
-            ['id' => 3, 'name' => 'Xiaomi 14'],
-        ];
-        return view('product.index', compact('products'));
-    })->name('product.index');
-
-    Route::get('/add', function () {
-        return view('product.add');
-    })->name('product.add');
-
-    Route::get('/{id?}', function ($id = '123') {
-        return "Product ID: " . $id;
-    })->where('id', '[A-Za-z0-9]+');
+Route::prefix('login')->group(function(){
+    Route::get('/', [ProductController::class, "login"])->name('login.login');
+    Route::get('/singup', [ProductController::class, "singup"])->name('login.singup');
 });
 
 Route::fallback(function () {

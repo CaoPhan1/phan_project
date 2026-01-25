@@ -1,21 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang ="en">
 <head>
     <title>Product List</title>
 </head>
 <body>
-
-<h2>Danh sách sản phẩm</h2>
-
-<ul>
-    @foreach($products as $p)
-        <li>{{ $p['name'] }}</li>
+    <h1>{{ $title }}</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+    </tr>
+    @foreach($products as $product)
+        <tr>
+            <td>{{ $product['id'] }}</td>
+            <td>{{ $product['name'] }}</td>
+            <td>{{ $product['price'] }}</td>
+        </tr>
     @endforeach
-</ul>
+    </table>
 
-<a href="{{ route('product.add') }}">
-    <button>Thêm mới sản phẩm</button>
-</a>
+
+
 
 </body>
 </html>

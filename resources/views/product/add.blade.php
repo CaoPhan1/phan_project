@@ -7,15 +7,18 @@
 
 <h2>Thêm sản phẩm mới</h2>
 
-<form>
+<form method="POST" action="{{ route('product.store') }}">
+    @csrf
+
     <label>Tên sản phẩm:</label><br>
-    <input type="text" placeholder="Nhập tên sản phẩm"><br><br>
+    <input type="text" name="name" placeholder="Nhập tên sản phẩm"><br><br>
 
     <label>Giá:</label><br>
-    <input type="number" placeholder="Nhập giá"><br><br>
+    <input type="number" name="price" placeholder="Nhập giá"><br><br>
 
-    <button>Thêm</button>
+    <button type="submit">Thêm</button>
 </form>
+
 
 <br>
 <a href="/product">⬅ Quay lại danh sách</a>
