@@ -37,13 +37,5 @@ class ProductController extends Controller
 
         // Sau này sẽ lưu DB
     }
-
-    public function login(){
-        return view ("login.login");
-    }
-
-    public function singup(){
-        return view ("login.singup");
-    }
     
 }

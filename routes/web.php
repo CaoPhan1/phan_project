@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
 Route::get('/', function () {
     return view('home');
 });
@@ -26,10 +27,8 @@ Route::prefix('product')->name('product.')->group(function () {
 //     return view('login.login');
 // });
 
-Route::prefix('login')->group(function(){
-    Route::get('/', [ProductController::class, "login"])->name('login.login');
-    Route::get('/singup', [ProductController::class, "singup"])->name('login.singup');
-});
+Route::get('/signin', [AuthController::class, 'signIn'])->name('signin');
+Route::post('/signin', [AuthController::class, 'checkSignIn'])->name('signin.check');
 
 Route::fallback(function () {
     return view('error.404');
