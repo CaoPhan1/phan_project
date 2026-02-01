@@ -29,6 +29,13 @@ Route::prefix('product')->name('product.')->group(function () {
 
 Route::get('/signin', [AuthController::class, 'signIn'])->name('signin');
 Route::post('/signin', [AuthController::class, 'checkSignIn'])->name('signin.check');
+//session kiem tra:
+Route::get('/age', [AuthController::class, 'age']);
+Route::post('/check-age', [AuthController::class, 'saveAge']);
+//middleware:
+Route::get('/protected', function () {
+    return "Chào mừng bạn! Truy cập hợp lệ.";
+})->middleware('check.age');
 
 Route::fallback(function () {
     return view('error.404');

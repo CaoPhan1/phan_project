@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class AuthController extends Controller
 {
@@ -35,4 +37,18 @@ class AuthController extends Controller
         return "Đăng ký thất bại";
     }
 
+    // Trả về view nhập tuổi
+    public function age()
+    {
+        return view('age');
+    }
+
+    // Lưu tuổi vào session
+    public function saveAge(Request $request)
+    {
+        Session::put('age', $request->age);
+        return redirect('/protected');
+    }
+
 }
+
