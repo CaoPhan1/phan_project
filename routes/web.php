@@ -7,13 +7,13 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::prefix('product')->name('product.')->group(function () {
+Route::prefix('admin/product')->name('product.')->group(function () {
     Route::controller(ProductController::class)->group(function() {
         Route::get('/', 'index');
         Route::get('/add', 'create')->name('add');
         Route::get('/detail/{id}', 'get');
         Route::post('/store', 'store')->name('store');
-    });
+    }); 
     
 });
 // Route::prefix('product')->group(function () {
@@ -54,4 +54,8 @@ Route::get('/sinhvien/{name?}/{mssv?}', function (
 
 Route::get('/banco/{n}', function ($n) {
     return view('banco', compact('n'));
+});
+//
+Route::get('/admin', function(){
+    return view('layout.admin');
 });

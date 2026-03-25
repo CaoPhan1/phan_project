@@ -8,8 +8,7 @@ class ProductController extends Controller
 {
     
     public function index(){
-         $title = "Product List";
-        return view("product.index", ['title' => $title, 
+        return view("admin.product.index", [
         'products' => [
         ['id' => 1, 'name' => 'iPhone 15', 'price' => 100],
         ['id' => 2, 'name' => 'Samsung S24', 'price' => 150],
